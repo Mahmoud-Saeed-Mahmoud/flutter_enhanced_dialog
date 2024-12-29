@@ -153,10 +153,10 @@ class FlutterEnhancedDialog extends StatefulWidget {
           Builder(
             builder: (context) {
               return ElevatedButton(
-                onPressed: () {
-                  onGotItPressed?.call();
-                  Navigator.of(context).pop();
-                },
+                onPressed: onGotItPressed ??
+                    () {
+                      Navigator.of(context).pop();
+                    },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF6C63FF),
                   foregroundColor: Colors.white,
