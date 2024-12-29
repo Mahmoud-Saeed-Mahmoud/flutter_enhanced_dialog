@@ -314,10 +314,10 @@ class FlutterEnhancedDialog extends StatefulWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      yesPressed?.call();
-                      Navigator.of(context).pop();
-                    },
+                    onPressed: yesPressed ??
+                        () {
+                          Navigator.of(context).pop();
+                        },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: color,
                       foregroundColor: Colors.white,
@@ -336,10 +336,10 @@ class FlutterEnhancedDialog extends StatefulWidget {
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton(
-                    onPressed: () {
-                      noPressed?.call();
-                      Navigator.of(context).pop();
-                    },
+                    onPressed: noPressed ??
+                        () {
+                          Navigator.of(context).pop();
+                        },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
                       foregroundColor: Colors.white,
@@ -360,10 +360,10 @@ class FlutterEnhancedDialog extends StatefulWidget {
               )
             else
               ElevatedButton(
-                onPressed: () {
-                  okPressed?.call();
-                  Navigator.of(context).pop();
-                },
+                onPressed: okPressed ??
+                    () {
+                      Navigator.of(context).pop();
+                    },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: color,
                   foregroundColor: Colors.white,
