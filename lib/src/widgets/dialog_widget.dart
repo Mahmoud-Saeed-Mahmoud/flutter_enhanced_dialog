@@ -41,6 +41,8 @@ class FlutterEnhancedDialog extends StatefulWidget {
             _buildDefaultDialogContent(
               title,
               message,
+              yesButtonText: yesButtonText,
+              noButtonText: noButtonText,
               icon ?? const Icon(Icons.help_outline),
               Colors.orange,
               isConfirm: true,
@@ -70,6 +72,7 @@ class FlutterEnhancedDialog extends StatefulWidget {
             _buildDefaultDialogContent(
               title,
               message,
+              okButtonText: okButtonText,
               icon ?? const Icon(Icons.error),
               Colors.red,
               isConfirm: false,
@@ -98,6 +101,7 @@ class FlutterEnhancedDialog extends StatefulWidget {
             _buildDefaultDialogContent(
               title,
               message,
+              okButtonText: okButtonText,
               icon ?? const Icon(Icons.info_outline),
               Colors.blue,
               isConfirm: false,
