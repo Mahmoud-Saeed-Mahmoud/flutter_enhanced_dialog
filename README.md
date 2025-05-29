@@ -1,6 +1,6 @@
 # Flutter Enhanced Dialog
 
-This file defines the `FlutterEnhancedDialog` widget, a highly customizable and animated dialog solution for Flutter applications. It provides various factory constructors for different dialog types (confirm, error, info, primary, success, warning) and handles animations, particle effects, and drag-to-dismiss functionality.
+`FlutterEnhancedDialog` widget, a highly customizable and animated dialog solution for Flutter applications. It provides various factory constructors for different dialog types (confirm, error, info, primary, success, warning) and handles animations, particle effects, and drag-to-dismiss functionality.
 
 ## Features
 
