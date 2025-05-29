@@ -157,10 +157,10 @@ class FlutterEnhancedDialog extends StatefulWidget {
           Builder(
             builder: (context) {
               return ElevatedButton(
-                onPressed: onGotItPressed ??
-                    () {
-                      Navigator.of(context).pop();
-                    },
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  onGotItPressed?.call();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF6C63FF),
                   foregroundColor: Colors.white,
@@ -318,10 +318,10 @@ class FlutterEnhancedDialog extends StatefulWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: yesPressed ??
-                        () {
-                          Navigator.of(context).pop();
-                        },
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      yesPressed?.call();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: color,
                       foregroundColor: Colors.white,
@@ -340,10 +340,10 @@ class FlutterEnhancedDialog extends StatefulWidget {
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton(
-                    onPressed: noPressed ??
-                        () {
-                          Navigator.of(context).pop();
-                        },
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      noPressed?.call();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
                       foregroundColor: Colors.white,
@@ -364,10 +364,10 @@ class FlutterEnhancedDialog extends StatefulWidget {
               )
             else
               ElevatedButton(
-                onPressed: okPressed ??
-                    () {
-                      Navigator.of(context).pop();
-                    },
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  okPressed?.call();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: color,
                   foregroundColor: Colors.white,
