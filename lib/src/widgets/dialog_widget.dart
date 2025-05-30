@@ -2,20 +2,58 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-// Example usage with modern content
 
+/// A highly customizable dialog widget with enhanced visual effects and animations.
+///
+/// This dialog supports multiple variants including:
+/// - Confirmation dialogs with Yes/No buttons
+/// - Error dialogs
+/// - Info dialogs
+/// - Primary dialogs with custom styling
+/// - Success dialogs
+/// - Warning dialogs
+///
+/// Features:
+/// - Animated entrance/exit transitions
+/// - Particle effects background
+/// - Glass morphism effect
+/// - Draggable dismiss
+/// - Customizable colors and content
 class FlutterEnhancedDialog extends StatefulWidget {
+  /// The main content widget of the dialog
   final Widget child;
+
+  /// The accent color used for styling and particles
   final Color accentColor;
+
+  /// Icon displayed in the dialog header
   final Widget icon;
+
+  /// Dialog title text
   final String title;
+
+  /// Dialog message/description text
   final String message;
+
+  /// Text for the "Yes" button in confirmation dialogs
   final String? yesButtonText;
+
+  /// Text for the "No" button in confirmation dialogs
   final String? noButtonText;
+
+  /// Callback when OK button is pressed
   final VoidCallback? okPressed;
+
+  /// Callback when Yes button is pressed
   final VoidCallback? yesPressed;
+
+  /// Callback when No button is pressed
   final VoidCallback? noPressed;
+
+  /// Text for the OK button
   final String? okButtonText;
+
+  /// Creates a confirmation dialog with Yes/No buttons
   factory FlutterEnhancedDialog.confirm({
     Key? key,
     required String title,
@@ -51,6 +89,7 @@ class FlutterEnhancedDialog extends StatefulWidget {
             ),
       );
 
+  /// Creates an error dialog with red styling
   factory FlutterEnhancedDialog.error({
     Key? key,
     required String title,
@@ -80,6 +119,7 @@ class FlutterEnhancedDialog extends StatefulWidget {
             ),
       );
 
+  /// Creates an info dialog with blue styling
   factory FlutterEnhancedDialog.info({
     Key? key,
     required String title,
@@ -109,6 +149,7 @@ class FlutterEnhancedDialog extends StatefulWidget {
             ),
       );
 
+  /// Creates a primary styled dialog with custom colors
   factory FlutterEnhancedDialog.primary({
     required String title,
     required String message,
@@ -184,6 +225,7 @@ class FlutterEnhancedDialog extends StatefulWidget {
     );
   }
 
+  /// Creates a success dialog with green styling
   factory FlutterEnhancedDialog.success({
     Key? key,
     required String title,
@@ -211,6 +253,8 @@ class FlutterEnhancedDialog extends StatefulWidget {
               okPressed: okPressed,
             ),
       );
+
+  /// Creates a warning dialog with amber styling
   factory FlutterEnhancedDialog.warning({
     Key? key,
     required String title,
@@ -240,6 +284,7 @@ class FlutterEnhancedDialog extends StatefulWidget {
             ),
       );
 
+  /// Private constructor used by factory constructors
   const FlutterEnhancedDialog._({
     super.key,
     required this.child,
@@ -258,6 +303,7 @@ class FlutterEnhancedDialog extends StatefulWidget {
   @override
   State<FlutterEnhancedDialog> createState() => _FlutterEnhancedDialogState();
 
+  /// Builds the default content layout for dialogs
   static Widget _buildDefaultDialogContent(
     String title,
     String message,
@@ -391,11 +437,21 @@ class FlutterEnhancedDialog extends StatefulWidget {
   }
 }
 
+/// Represents a single particle in the dialog background animation
 class Particle {
+  /// Current position of the particle
   Offset position;
+
+  /// Color of the particle
   Color color;
+
+  /// Movement speed
   double speed;
+
+  /// Size of the particle
   double size;
+
+  /// Direction angle in radians
   double angle;
 
   Particle({
@@ -407,6 +463,7 @@ class Particle {
   });
 }
 
+/// Custom painter for rendering the particle animation
 class ParticlePainter extends CustomPainter {
   final List<Particle> particles;
 
@@ -427,17 +484,34 @@ class ParticlePainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
+/// Internal state class for FlutterEnhancedDialog
 class _FlutterEnhancedDialogState extends State<FlutterEnhancedDialog>
     with TickerProviderStateMixin {
+  /// Controls the main dialog animations
   late AnimationController _mainController;
+
+  /// Controls the particle animation
   late AnimationController _particleController;
+
+  /// Animation for dialog scale effect
   late Animation<double> _scaleAnimation;
+
+  /// Animation for glass blur effect
   late Animation<double> _blurAnimation;
+
+  /// Animation for dialog opacity
   late Animation<double> _opacityAnimation;
+
+  /// List of background particles
   late List<Particle> particles;
 
+  /// Number of particles to generate
   final int particleCount = 20;
+
+  /// Tracks vertical drag offset for dismissal
   double _dragOffset = 0.0;
+
+  /// Whether the dialog is currently being dragged
   bool _isDragging = false;
 
   @override
@@ -578,6 +652,7 @@ class _FlutterEnhancedDialogState extends State<FlutterEnhancedDialog>
     _initializeParticles();
   }
 
+  /// Sets up all animations used by the dialog
   void _initializeAnimations() {
     _mainController = AnimationController(
       duration: const Duration(milliseconds: 1000),
@@ -613,6 +688,7 @@ class _FlutterEnhancedDialogState extends State<FlutterEnhancedDialog>
     _mainController.forward();
   }
 
+  /// Initializes the background particles with random properties
   void _initializeParticles() {
     final random = Random();
     particles = List.generate(
@@ -632,6 +708,7 @@ class _FlutterEnhancedDialogState extends State<FlutterEnhancedDialog>
     );
   }
 
+  /// Updates particle positions for animation
   void _updateParticles(double delta) {
     for (var particle in particles) {
       particle.position += Offset(
@@ -650,7 +727,9 @@ class _FlutterEnhancedDialogState extends State<FlutterEnhancedDialog>
   }
 }
 
+/// Extension to provide a convenient show method
 extension ShowDialog on FlutterEnhancedDialog {
+  /// Shows the dialog with optional barrier settings
   void show(
     BuildContext context, {
     bool barrierDismissible = true,
